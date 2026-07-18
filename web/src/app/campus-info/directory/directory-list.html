@@ -1,0 +1,25 @@
+<div class="directory-page">
+  <h1>Annuaire de contacts</h1>
+  @for (contact of contacts(); track contact.id) {
+    <div class="contact-item">
+      <h3>{{ contact.name }}</h3>
+      @if (contact.role) {
+        <p class="role">{{ contact.role }}</p>
+      }
+      @if (contact.department) {
+        <p>{{ contact.department }}</p>
+      }
+      @if (contact.email) {
+        <p>{{ contact.email }}</p>
+      }
+      @if (contact.phone) {
+        <p>{{ contact.phone }}</p>
+      }
+      @if (contact.officeLocation) {
+        <p>{{ contact.officeLocation }}</p>
+      }
+    </div>
+  } @empty {
+    <p>Aucun contact pour l'instant.</p>
+  }
+</div>

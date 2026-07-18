@@ -1,0 +1,39 @@
+<div class="plan-page">
+  <h1>Plan du campus</h1>
+
+  @if (notFound()) {
+    <p>Aucun plan disponible pour ton campus pour l'instant.</p>
+  } @else if (plan(); as p) {
+    @if (p.description) {
+      <p>{{ p.description }}</p>
+    }
+    @if (p.imageUrl) {
+      <div class="plan-image-wrapper">
+        <img [src]="p.imageUrl" alt="Plan du campus" />
+        @for (point of p.points; track point.id) {
+          <button
+            type="button"
+            class="plan-point"
+            [style.left.%]="point.xPercent"
+            [style.top.%]="point.yPercent"
+            (click)="selectPoint(point)"
+            [title]="point.label"
+          >
+            📍
+          </button>
+        }
+      </div>
+    } @else {
+      <p>Aucune image de plan n'a encore été ajoutée.</p>
+    }
+
+    @if (selectedPoint(); as sp) {
+      <div class="point-detail">
+        <h3>{{ sp.label }}</h3>
+        @if (sp.description) {
+          <p>{{ sp.description }}</p>
+        }
+      </div>
+    }
+  }
+</div>

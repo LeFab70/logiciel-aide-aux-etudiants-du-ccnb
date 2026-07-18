@@ -1,0 +1,24 @@
+.directory-page {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: sans-serif;
+
+  .contact-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e0e0e0;
+
+    h3 {
+      margin: 0 0 0.25rem;
+    }
+
+    p {
+      margin: 0.15rem 0;
+      color: #444;
+    }
+
+    .role {
+      font-style: italic;
+    }
+  }
+}

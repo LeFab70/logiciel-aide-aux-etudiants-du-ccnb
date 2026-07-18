@@ -1,0 +1,20 @@
+<div class="admin-page">
+  <label class="campus-selector">
+    Campus affiché :
+    <select [ngModel]="selectedCampusId()" (ngModelChange)="selectCampus($event)" [ngModelOptions]="{ standalone: true }">
+      @for (campus of campuses(); track campus.id) {
+        <option [ngValue]="campus.id">{{ campus.name }}</option>
+      }
+    </select>
+  </label>
+
+  <app-crud-table
+    title="Annuaire de contacts"
+    [columns]="columns"
+    [fields]="fields()"
+    [items]="contacts()"
+    (create)="onCreate($event)"
+    (update)="onUpdate($event)"
+    (delete)="onDelete($event)"
+  />
+</div>

@@ -1,0 +1,71 @@
+<div class="crud-table">
+  <div class="crud-header">
+    <h2>{{ title }}</h2>
+    <button type="button" (click)="openCreate()">+ Ajouter</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        @for (column of columns; track column.key) {
+          <th>{{ column.label }}</th>
+        }
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of items; track item.id) {
+        <tr>
+          @for (column of columns; track column.key) {
+            <td>{{ displayValue(item, column.key) }}</td>
+          }
+          <td class="actions">
+            <button type="button" (click)="openEdit(item)">Modifier</button>
+            <button type="button" class="danger" (click)="remove(item.id)">Supprimer</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td [attr.colspan]="columns.length + 1">Aucun élément.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  @if (showForm) {
+    <div class="dialog-backdrop">
+      <form class="dialog" [formGroup]="form" (ngSubmit)="submit()">
+        <h3>{{ editingId !== null ? 'Modifier' : 'Ajouter' }}</h3>
+
+        @for (field of fields; track field.key) {
+          <label>
+            {{ field.label }}
+            @switch (field.type) {
+              @case ('textarea') {
+                <textarea [formControlName]="field.key" rows="3"></textarea>
+              }
+              @case ('number') {
+                <input type="number" [formControlName]="field.key" />
+              }
+              @case ('select') {
+                <select [formControlName]="field.key">
+                  @for (option of field.options; track option.value) {
+                    <option [ngValue]="option.value">{{ option.label }}</option>
+                  }
+                </select>
+              }
+              @default {
+                <input type="text" [formControlName]="field.key" />
+              }
+            }
+          </label>
+        }
+
+        <div class="dialog-actions">
+          <button type="button" (click)="cancel()">Annuler</button>
+          <button type="submit">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  }
+</div>

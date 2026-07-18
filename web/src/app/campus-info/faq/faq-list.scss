@@ -1,0 +1,25 @@
+.faq-page {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: sans-serif;
+
+  .faq-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e0e0e0;
+
+    h3 {
+      margin: 0 0 0.5rem;
+    }
+
+    .category {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #1c4e80;
+      background: #eef3f9;
+      padding: 0.15rem 0.5rem;
+      border-radius: 12px;
+    }
+  }
+}

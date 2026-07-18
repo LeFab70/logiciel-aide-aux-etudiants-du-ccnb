@@ -1,0 +1,14 @@
+<div class="faq-page">
+  <h1>FAQ</h1>
+  @for (faq of faqs(); track faq.id) {
+    <div class="faq-item">
+      <h3>{{ faq.question }}</h3>
+      <p>{{ faq.answer }}</p>
+      @if (faq.category) {
+        <span class="category">{{ faq.category }}</span>
+      }
+    </div>
+  } @empty {
+    <p>Aucune question fréquente pour l'instant.</p>
+  }
+</div>

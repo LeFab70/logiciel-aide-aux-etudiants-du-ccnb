@@ -32,3 +32,42 @@ export interface LoginRequest {
   email: string;
   password: string;
 }
+
+export interface Faq {
+  id: number;
+  campusId: number | null;
+  question: string;
+  answer: string;
+  category: string | null;
+  displayOrder: number;
+}
+
+export interface DirectoryContact {
+  id: number;
+  campusId: number;
+  name: string;
+  role: string | null;
+  department: string | null;
+  email: string | null;
+  phone: string | null;
+  officeLocation: string | null;
+}
+
+export type PlanPointCategory = 'CLASSROOM' | 'SERVICE' | 'CAFETERIA' | 'LIBRARY' | 'OTHER';
+
+export interface PlanPoint {
+  id: number;
+  label: string;
+  xPercent: number;
+  yPercent: number;
+  category: PlanPointCategory;
+  description: string | null;
+}
+
+export interface CampusPlan {
+  id: number;
+  campusId: number;
+  imageUrl: string | null;
+  description: string | null;
+  points: PlanPoint[];
+}

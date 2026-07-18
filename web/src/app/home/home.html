@@ -3,6 +3,16 @@
     <h1>Bienvenue, {{ user.firstName }}</h1>
     <p>Campus : {{ user.campus.name }}</p>
     <p>Rôles : {{ user.roles.join(', ') }}</p>
+
+    <nav class="home-nav">
+      <a routerLink="/faq">FAQ</a>
+      <a routerLink="/directory">Annuaire de contacts</a>
+      <a routerLink="/campus-plan">Plan du campus</a>
+      @if (user.roles.includes('ADMIN')) {
+        <a routerLink="/admin">Administration</a>
+      }
+    </nav>
+
     <button (click)="logout()">Se déconnecter</button>
   }
 </div>

@@ -1,0 +1,35 @@
+<div class="admin-page">
+  <label class="campus-selector">
+    Campus affiché :
+    <select [ngModel]="selectedCampusId()" (ngModelChange)="selectCampus($event)" [ngModelOptions]="{ standalone: true }">
+      @for (campus of campuses(); track campus.id) {
+        <option [ngValue]="campus.id">{{ campus.name }}</option>
+      }
+    </select>
+  </label>
+
+  <section class="plan-details">
+    <h2>Image et description du plan</h2>
+    <label>
+      URL de l'image
+      <input type="text" [ngModel]="imageUrl()" (ngModelChange)="imageUrl.set($event)" [ngModelOptions]="{ standalone: true }" />
+    </label>
+    <label>
+      Description
+      <textarea rows="2" [ngModel]="description()" (ngModelChange)="description.set($event)" [ngModelOptions]="{ standalone: true }"></textarea>
+    </label>
+    <button type="button" (click)="saveDetails()">Enregistrer</button>
+  </section>
+
+  @if (plan(); as p) {
+    <app-crud-table
+      title="Points du plan"
+      [columns]="pointColumns"
+      [fields]="pointFields"
+      [items]="p.points"
+      (create)="onCreatePoint($event)"
+      (update)="onUpdatePoint($event)"
+      (delete)="onDeletePoint($event)"
+    />
+  }
+</div>
