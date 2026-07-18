@@ -1,0 +1,8 @@
+<div class="home-page">
+  @if (authService.currentUser(); as user) {
+    <h1>Bienvenue, {{ user.firstName }}</h1>
+    <p>Campus : {{ user.campus.name }}</p>
+    <p>Rôles : {{ user.roles.join(', ') }}</p>
+    <button (click)="logout()">Se déconnecter</button>
+  }
+</div>
