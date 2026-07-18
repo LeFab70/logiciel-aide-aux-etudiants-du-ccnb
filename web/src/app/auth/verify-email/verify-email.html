@@ -1,0 +1,56 @@
+<div class="auth-page">
+  <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>✉️ Vérifie ton email</h1>
+    <p class="hint">
+      Un code à 6 chiffres a été envoyé par courriel. Entre-le ci-dessous pour activer ton compte.
+    </p>
+
+    <label>
+      Email
+      <input type="email" formControlName="email" autocomplete="email" />
+    </label>
+
+    <label>
+      Code de vérification
+      <input
+        type="text"
+        formControlName="code"
+        inputmode="numeric"
+        maxlength="6"
+        placeholder="123456"
+        autocomplete="one-time-code"
+      />
+    </label>
+    @if (form.controls.code.invalid && form.controls.code.touched) {
+      <p class="field-error">Le code doit contenir 6 chiffres.</p>
+    }
+
+    @if (errorMessage()) {
+      <p class="form-error">❌ {{ errorMessage() }}</p>
+    }
+    @if (infoMessage()) {
+      <p class="form-info">✅ {{ infoMessage() }}</p>
+    }
+
+    <button type="submit" [disabled]="submitting()">
+      {{ submitting() ? 'Vérification...' : 'Vérifier' }}
+    </button>
+
+    <button
+      type="button"
+      class="secondary"
+      [disabled]="resending() || cooldownSeconds() > 0"
+      (click)="resend()"
+    >
+      @if (cooldownSeconds() > 0) {
+        Renvoyer le code ({{ cooldownSeconds() }}s)
+      } @else {
+        {{ resending() ? 'Envoi...' : 'Renvoyer le code' }}
+      }
+    </button>
+
+    <p class="switch-link">
+      <a routerLink="/auth/register">Recommencer l'inscription</a>
+    </p>
+  </form>
+</div>

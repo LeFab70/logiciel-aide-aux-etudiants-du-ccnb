@@ -1,9 +1,7 @@
 package com.ccnb.app.auth;
 
+import com.ccnb.app.common.HashUtil;
 import com.ccnb.app.user.User;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -30,7 +28,7 @@ public class RefreshTokenService {
         String rawToken = generateRawToken();
         RefreshToken entity = new RefreshToken();
         entity.setUser(user);
-        entity.setTokenHash(hash(rawToken));
+        entity.setTokenHash(HashUtil.sha256(rawToken));
         entity.setExpiresAt(Instant.now().plus(refreshTokenTtlDays, ChronoUnit.DAYS));
         refreshTokenRepository.save(entity);
         return rawToken;
@@ -43,7 +41,7 @@ public class RefreshTokenService {
      */
     public User verifyAndConsume(String rawToken) {
         RefreshToken entity = refreshTokenRepository
-                .findByTokenHash(hash(rawToken))
+                .findByTokenHash(HashUtil.sha256(rawToken))
                 .orElseThrow(() -> new BadCredentialsException("Refresh token invalide"));
         if (entity.isRevoked() || entity.getExpiresAt().isBefore(Instant.now())) {
             throw new BadCredentialsException("Refresh token invalide");
@@ -57,15 +55,5 @@ public class RefreshTokenService {
         byte[] bytes = new byte[32];
         secureRandom.nextBytes(bytes);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
-    }
-
-    private String hash(String rawToken) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hashed = digest.digest(rawToken.getBytes(StandardCharsets.UTF_8));
-            return Base64.getEncoder().encodeToString(hashed);
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException(e);
-        }
     }
 }

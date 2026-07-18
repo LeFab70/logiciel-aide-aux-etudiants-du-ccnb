@@ -19,10 +19,45 @@
 
     <label>
       Mot de passe
-      <input type="password" formControlName="password" autocomplete="new-password" />
+      <div class="password-field">
+        <input
+          [type]="showPassword() ? 'text' : 'password'"
+          formControlName="password"
+          autocomplete="new-password"
+        />
+        <button type="button" class="eye-toggle" (click)="togglePasswordVisibility()">
+          {{ showPassword() ? '🙈' : '👁️' }}
+        </button>
+      </div>
     </label>
-    @if (form.controls.password.hasError('minlength') && form.controls.password.touched) {
-      <p class="field-error">8 caractères minimum.</p>
+
+    <ul class="password-checklist">
+      <li [class.ok]="passwordChecks().hasMinLength">
+        {{ passwordChecks().hasMinLength ? '✓' : '✗' }} 8 caractères minimum
+      </li>
+      <li [class.ok]="passwordChecks().hasUpper">
+        {{ passwordChecks().hasUpper ? '✓' : '✗' }} une majuscule
+      </li>
+      <li [class.ok]="passwordChecks().hasLower">
+        {{ passwordChecks().hasLower ? '✓' : '✗' }} une minuscule
+      </li>
+      <li [class.ok]="passwordChecks().hasDigit">
+        {{ passwordChecks().hasDigit ? '✓' : '✗' }} un chiffre
+      </li>
+    </ul>
+
+    <label>
+      Confirmer le mot de passe
+      <input
+        [type]="showPassword() ? 'text' : 'password'"
+        formControlName="confirmPassword"
+        autocomplete="new-password"
+      />
+    </label>
+    @if (passwordsMatch()) {
+      <p class="field-ok">✓ Les mots de passe correspondent</p>
+    } @else if (showMismatch()) {
+      <p class="field-error">✗ Les mots de passe ne correspondent pas</p>
     }
 
     <label>

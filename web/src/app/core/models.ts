@@ -33,6 +33,20 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface PendingRegistrationResponse {
+  email: string;
+  expiresAt: string;
+}
+
+export interface VerifyEmailRequest {
+  email: string;
+  code: string;
+}
+
+export interface ResendCodeRequest {
+  email: string;
+}
+
 export interface Faq {
   id: number;
   campusId: number | null;

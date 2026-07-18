@@ -2,7 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { AuthResponse, LoginRequest, RegisterRequest, User } from './models';
+import {
+  AuthResponse,
+  LoginRequest,
+  PendingRegistrationResponse,
+  RegisterRequest,
+  ResendCodeRequest,
+  User,
+  VerifyEmailRequest,
+} from './models';
 
 const ACCESS_TOKEN_KEY = 'ccnb_access_token';
 const REFRESH_TOKEN_KEY = 'ccnb_refresh_token';
@@ -27,11 +35,19 @@ export class AuthService {
     return this.currentUserSignal()?.roles.includes(role as never) ?? false;
   }
 
-  register(request: RegisterRequest): Observable<User> {
-    return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/register`, request).pipe(
+  register(request: RegisterRequest): Observable<PendingRegistrationResponse> {
+    return this.http.post<PendingRegistrationResponse>(`${environment.apiUrl}/auth/register`, request);
+  }
+
+  verifyEmail(request: VerifyEmailRequest): Observable<User> {
+    return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/verify-email`, request).pipe(
       tap((res) => this.storeTokens(res)),
       switchMap(() => this.loadCurrentUser()),
     );
+  }
+
+  resendCode(request: ResendCodeRequest): Observable<PendingRegistrationResponse> {
+    return this.http.post<PendingRegistrationResponse>(`${environment.apiUrl}/auth/resend-code`, request);
   }
 
   login(request: LoginRequest): Observable<User> {
