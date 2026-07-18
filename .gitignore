@@ -1,0 +1,27 @@
+# Java / Maven
+api/target/
+*.class
+*.jar
+
+# Node / Angular
+web/node_modules/
+web/dist/
+web/.angular/
+
+# Flutter
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+
+# Env
+.env
+*.local.env
