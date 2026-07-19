@@ -23,13 +23,13 @@
 
   h1 {
     margin: 0 0 0.15rem;
-    font-size: 1.4rem;
+    font-size: 1.625rem;
   }
 
   p {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 
@@ -66,7 +66,7 @@
 
   p {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 0.9375rem;
     color: var(--color-text-muted);
   }
 
@@ -88,7 +88,7 @@
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 1.25rem;
-  font-size: 0.85rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--color-text-muted);
 
@@ -97,7 +97,7 @@
     border-radius: var(--radius-sm);
     border: 1px solid var(--color-border);
     background: var(--color-surface);
-    font-size: 0.85rem;
+    font-size: 0.9375rem;
     font-family: inherit;
 
     &:focus {
@@ -125,7 +125,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    font-size: 0.85rem;
+    font-size: 0.9375rem;
     font-weight: 500;
     color: var(--color-text);
     margin-bottom: 0.75rem;
@@ -136,7 +136,7 @@
     padding: 0.55rem 0.7rem;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
-    font-size: 0.9rem;
+    font-size: 1rem;
     background: var(--color-bg);
     font-family: inherit;
 
@@ -158,7 +158,7 @@
     background: var(--color-primary);
     color: white;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.9375rem;
     cursor: pointer;
     transition: background-color 0.12s ease;
 

@@ -32,7 +32,7 @@
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    font-size: 0.95rem;
+    font-size: 1.0625rem;
     font-weight: 600;
     position: relative;
 
@@ -54,14 +54,14 @@
 
     h2 {
       color: white;
-      font-size: 1.6rem;
+      font-size: 1.75rem;
       line-height: 1.3;
       margin: 0 0 0.75rem;
     }
 
     p {
       color: rgba(255, 255, 255, 0.65);
-      font-size: 0.92rem;
+      font-size: 1rem;
       line-height: 1.55;
       margin: 0;
     }
@@ -69,7 +69,7 @@
 
   .auth-side-foot {
     position: relative;
-    font-size: 0.78rem;
+    font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.4);
   }
 }
@@ -93,7 +93,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--color-text);
     margin-bottom: 0.5rem;
@@ -116,12 +116,12 @@
 
   h1 {
     margin: 0 0 0.15rem;
-    font-size: 1.3rem;
+    font-size: 1.375rem;
   }
 
   .auth-subtitle {
     margin: 0 0 0.25rem;
-    font-size: 0.85rem;
+    font-size: 0.9375rem;
     color: var(--color-text-muted);
   }
 
@@ -129,7 +129,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    font-size: 0.82rem;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--color-text);
   }
@@ -175,7 +175,7 @@
   textarea {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
-    font-size: 0.9rem;
+    font-size: 1rem;
     background: var(--color-surface);
     transition:
       border-color 0.12s ease,
@@ -207,7 +207,7 @@
     border-radius: var(--radius-sm);
     background: var(--color-primary);
     color: white;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.12s ease;
@@ -234,7 +234,7 @@
 
   .hint {
     margin: 0;
-    font-size: 0.82rem;
+    font-size: 1rem;
     color: var(--color-text-muted);
     line-height: 1.4;
   }
@@ -248,7 +248,7 @@
     background: var(--color-danger-bg);
     padding: 0.45rem 0.6rem;
     border-radius: var(--radius-sm);
-    font-size: 0.78rem;
+    font-size: 0.875rem;
     margin: 0;
   }
 
@@ -260,7 +260,7 @@
     background: var(--color-success-bg);
     padding: 0.45rem 0.6rem;
     border-radius: var(--radius-sm);
-    font-size: 0.78rem;
+    font-size: 0.875rem;
     margin: 0;
   }
 
@@ -269,7 +269,7 @@
     align-items: center;
     gap: 0.35rem;
     color: var(--color-success);
-    font-size: 0.78rem;
+    font-size: 0.875rem;
     margin: 0;
   }
 
@@ -283,7 +283,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.28rem;
-    font-size: 0.78rem;
+    font-size: 0.875rem;
     color: var(--color-text-muted);
 
     li {
@@ -303,7 +303,7 @@
 
   .switch-link {
     text-align: center;
-    font-size: 0.82rem;
+    font-size: 1rem;
     margin-top: 0.3rem;
     color: var(--color-text-muted);
   }

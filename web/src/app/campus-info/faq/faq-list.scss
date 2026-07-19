@@ -23,13 +23,13 @@
 
   h1 {
     margin: 0 0 0.15rem;
-    font-size: 1.4rem;
+    font-size: 1.625rem;
   }
 
   p {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 
@@ -61,7 +61,7 @@
     background: none;
     border: none;
     text-align: left;
-    font-size: 0.95rem;
+    font-size: 1.0625rem;
     font-weight: 600;
     color: var(--color-text);
     cursor: pointer;
@@ -82,7 +82,7 @@
   .faq-answer {
     padding: 0 1.25rem 1.1rem;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.5;
 
     p {
@@ -91,7 +91,7 @@
 
     .category {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       color: var(--color-primary);
       background: var(--color-primary-light);
       padding: 0.15rem 0.6rem;

@@ -23,13 +23,13 @@
 
   h1 {
     margin: 0 0 0.15rem;
-    font-size: 1.4rem;
+    font-size: 1.625rem;
   }
 
   p {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 
@@ -62,19 +62,19 @@
 
   h3 {
     margin: 0 0 0.15rem;
-    font-size: 0.98rem;
+    font-size: 1.0625rem;
   }
 
   .role {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 0.9375rem;
     font-style: italic;
     color: var(--color-text-muted);
   }
 
   .department {
     margin: 0.1rem 0 0.5rem;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     color: var(--color-text-muted);
   }
 
@@ -87,7 +87,7 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.8rem;
+      font-size: 0.875rem;
       color: var(--color-text-muted);
     }
   }
