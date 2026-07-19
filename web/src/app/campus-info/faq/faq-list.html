@@ -1,14 +1,33 @@
-<div class="faq-page">
-  <h1>FAQ</h1>
-  @for (faq of faqs(); track faq.id) {
-    <div class="faq-item">
-      <h3>{{ faq.question }}</h3>
-      <p>{{ faq.answer }}</p>
-      @if (faq.category) {
-        <span class="category">{{ faq.category }}</span>
-      }
+<div class="page">
+  <header class="page-header">
+    <span class="page-icon"><app-icon name="circle-question-mark" [size]="24" /></span>
+    <div>
+      <h1>Foire aux questions</h1>
+      <p>Les réponses aux questions les plus fréquentes de ton campus.</p>
     </div>
-  } @empty {
-    <p>Aucune question fréquente pour l'instant.</p>
-  }
+  </header>
+
+  <div class="faq-list">
+    @for (faq of faqs(); track faq.id) {
+      <div class="faq-item" [class.open]="expandedId() === faq.id">
+        <button type="button" class="faq-question" (click)="toggle(faq.id)">
+          <span>{{ faq.question }}</span>
+          <span class="chevron"><app-icon name="plus" [size]="16" /></span>
+        </button>
+        @if (expandedId() === faq.id) {
+          <div class="faq-answer">
+            <p>{{ faq.answer }}</p>
+            @if (faq.category) {
+              <span class="category">{{ faq.category }}</span>
+            }
+          </div>
+        }
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <app-icon name="circle-question-mark" [size]="32" [strokeWidth]="1.5" />
+        <p>Aucune question fréquente pour l'instant.</p>
+      </div>
+    }
+  </div>
 </div>

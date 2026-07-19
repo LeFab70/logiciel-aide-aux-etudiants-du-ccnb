@@ -11,6 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 import { CampusService } from '../../core/campus.service';
 import { Campus } from '../../core/models';
+import { AppIcon } from '../../shared/icon/icon';
 
 /** Mirrors the server-side pattern in RegisterRequest.password — keep both in sync. */
 const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -23,7 +24,7 @@ function passwordsMatchValidator(group: AbstractControl): ValidationErrors | nul
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, AppIcon],
   templateUrl: './register.html',
   styleUrl: '../login/login.scss',
 })

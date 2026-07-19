@@ -1,6 +1,14 @@
 <div class="admin-page">
+  <header class="page-header">
+    <span class="page-icon"><app-icon name="users" [size]="24" /></span>
+    <div>
+      <h1>Gérer l'annuaire</h1>
+      <p>Ajoute, modifie ou supprime les contacts par campus.</p>
+    </div>
+  </header>
+
   <label class="campus-selector">
-    Campus affiché :
+    <app-icon name="map-pin" [size]="16" /> Campus affiché :
     <select [ngModel]="selectedCampusId()" (ngModelChange)="selectCampus($event)" [ngModelOptions]="{ standalone: true }">
       @for (campus of campuses(); track campus.id) {
         <option [ngValue]="campus.id">{{ campus.name }}</option>

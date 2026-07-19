@@ -1,80 +1,105 @@
 <div class="auth-page">
   <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="auth-logo"><app-icon name="graduation-cap" [size]="28" /></div>
     <h1>Inscription</h1>
+    <p class="auth-subtitle">Crée ton compte étudiant CCNB</p>
 
     <label>
       Prénom
-      <input type="text" formControlName="firstName" />
+      <div class="input-wrap">
+        <span class="input-icon"><app-icon name="user" [size]="18" /></span>
+        <input type="text" formControlName="firstName" />
+      </div>
     </label>
 
     <label>
       Nom
-      <input type="text" formControlName="lastName" />
+      <div class="input-wrap">
+        <span class="input-icon"><app-icon name="user" [size]="18" /></span>
+        <input type="text" formControlName="lastName" />
+      </div>
     </label>
 
     <label>
       Email
-      <input type="email" formControlName="email" autocomplete="email" />
+      <div class="input-wrap">
+        <span class="input-icon"><app-icon name="mail" [size]="18" /></span>
+        <input type="email" formControlName="email" autocomplete="email" />
+      </div>
     </label>
 
     <label>
       Mot de passe
-      <div class="password-field">
+      <div class="input-wrap">
+        <span class="input-icon"><app-icon name="lock" [size]="18" /></span>
         <input
           [type]="showPassword() ? 'text' : 'password'"
           formControlName="password"
           autocomplete="new-password"
         />
         <button type="button" class="eye-toggle" (click)="togglePasswordVisibility()">
-          {{ showPassword() ? '🙈' : '👁️' }}
+          <app-icon [name]="showPassword() ? 'eye-off' : 'eye'" [size]="17" />
         </button>
       </div>
     </label>
 
     <ul class="password-checklist">
       <li [class.ok]="passwordChecks().hasMinLength">
-        {{ passwordChecks().hasMinLength ? '✓' : '✗' }} 8 caractères minimum
+        <span class="check-icon"><app-icon [name]="passwordChecks().hasMinLength ? 'check' : 'x'" [size]="14" /></span>
+        8 caractères minimum
       </li>
       <li [class.ok]="passwordChecks().hasUpper">
-        {{ passwordChecks().hasUpper ? '✓' : '✗' }} une majuscule
+        <span class="check-icon"><app-icon [name]="passwordChecks().hasUpper ? 'check' : 'x'" [size]="14" /></span>
+        une majuscule
       </li>
       <li [class.ok]="passwordChecks().hasLower">
-        {{ passwordChecks().hasLower ? '✓' : '✗' }} une minuscule
+        <span class="check-icon"><app-icon [name]="passwordChecks().hasLower ? 'check' : 'x'" [size]="14" /></span>
+        une minuscule
       </li>
       <li [class.ok]="passwordChecks().hasDigit">
-        {{ passwordChecks().hasDigit ? '✓' : '✗' }} un chiffre
+        <span class="check-icon"><app-icon [name]="passwordChecks().hasDigit ? 'check' : 'x'" [size]="14" /></span>
+        un chiffre
       </li>
     </ul>
 
     <label>
       Confirmer le mot de passe
-      <input
-        [type]="showPassword() ? 'text' : 'password'"
-        formControlName="confirmPassword"
-        autocomplete="new-password"
-      />
+      <div class="input-wrap">
+        <span class="input-icon"><app-icon name="lock" [size]="18" /></span>
+        <input
+          [type]="showPassword() ? 'text' : 'password'"
+          formControlName="confirmPassword"
+          autocomplete="new-password"
+        />
+      </div>
     </label>
     @if (passwordsMatch()) {
-      <p class="field-ok">✓ Les mots de passe correspondent</p>
+      <p class="field-ok"><app-icon name="check" [size]="14" /> Les mots de passe correspondent</p>
     } @else if (showMismatch()) {
-      <p class="field-error">✗ Les mots de passe ne correspondent pas</p>
+      <p class="field-error"><app-icon name="x" [size]="14" /> Les mots de passe ne correspondent pas</p>
     }
 
     <label>
       Campus
-      <select formControlName="campusId">
-        <option [ngValue]="null" disabled>Choisir un campus</option>
-        @for (campus of campuses(); track campus.id) {
-          <option [ngValue]="campus.id">{{ campus.name }}</option>
-        }
-      </select>
+      <div class="input-wrap">
+        <span class="input-icon"><app-icon name="building-2" [size]="18" /></span>
+        <select formControlName="campusId">
+          <option [ngValue]="null" disabled>Choisir un campus</option>
+          @for (campus of campuses(); track campus.id) {
+            <option [ngValue]="campus.id">{{ campus.name }}</option>
+          }
+        </select>
+      </div>
     </label>
 
     @if (errorMessage()) {
-      <p class="form-error">{{ errorMessage() }}</p>
+      <p class="form-error"><app-icon name="x" [size]="14" /> {{ errorMessage() }}</p>
     }
 
     <button type="submit" [disabled]="submitting()">
+      @if (!submitting()) {
+        <app-icon name="user" [size]="18" />
+      }
       {{ submitting() ? 'Inscription...' : "S'inscrire" }}
     </button>
 

@@ -6,10 +6,11 @@ import { FaqService } from '../../core/faq.service';
 import { Campus, Faq } from '../../core/models';
 import { CrudColumn, CrudTable } from '../../shared/crud-table/crud-table';
 import { CrudField } from '../../shared/crud-table/crud-field';
+import { AppIcon } from '../../shared/icon/icon';
 
 @Component({
   selector: 'app-faq-admin',
-  imports: [CrudTable, FormsModule],
+  imports: [CrudTable, FormsModule, AppIcon],
   templateUrl: './faq-admin.html',
   styleUrl: '../admin-page.scss',
 })

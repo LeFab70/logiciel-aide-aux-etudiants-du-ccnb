@@ -1,25 +1,117 @@
-.faq-page {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  font-family: sans-serif;
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+}
 
-  .faq-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid #e0e0e0;
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
 
-    h3 {
+  .page-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  h1 {
+    margin: 0 0 0.15rem;
+    font-size: 1.4rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.faq-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+
+  &.open {
+    box-shadow: var(--shadow-sm);
+    border-color: var(--color-primary);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+
+    .chevron {
+      display: inline-flex;
+      color: var(--color-text-muted);
+      transition: transform 0.15s ease;
+      flex-shrink: 0;
+    }
+  }
+
+  &.open .faq-question .chevron {
+    transform: rotate(45deg);
+    color: var(--color-primary);
+  }
+
+  .faq-answer {
+    padding: 0 1.25rem 1.1rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    p {
       margin: 0 0 0.5rem;
     }
 
     .category {
       display: inline-block;
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-      color: #1c4e80;
-      background: #eef3f9;
-      padding: 0.15rem 0.5rem;
-      border-radius: 12px;
+      font-size: 0.75rem;
+      color: var(--color-primary);
+      background: var(--color-primary-light);
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
     }
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 3rem 1rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+
+  p {
+    margin: 0;
   }
 }

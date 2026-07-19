@@ -6,6 +6,7 @@ import { CampusService } from '../../core/campus.service';
 import { Campus, CampusPlan, PlanPoint, PlanPointCategory } from '../../core/models';
 import { CrudColumn, CrudTable } from '../../shared/crud-table/crud-table';
 import { CrudField } from '../../shared/crud-table/crud-field';
+import { AppIcon } from '../../shared/icon/icon';
 
 const POINT_CATEGORIES: PlanPointCategory[] = [
   'CLASSROOM',
@@ -17,7 +18,7 @@ const POINT_CATEGORIES: PlanPointCategory[] = [
 
 @Component({
   selector: 'app-campus-plan-admin',
-  imports: [CrudTable, FormsModule],
+  imports: [CrudTable, FormsModule, AppIcon],
   templateUrl: './campus-plan-admin.html',
   styleUrl: '../admin-page.scss',
 })

@@ -6,10 +6,11 @@ import { DirectoryService } from '../../core/directory.service';
 import { Campus, DirectoryContact } from '../../core/models';
 import { CrudColumn, CrudTable } from '../../shared/crud-table/crud-table';
 import { CrudField } from '../../shared/crud-table/crud-field';
+import { AppIcon } from '../../shared/icon/icon';
 
 @Component({
   selector: 'app-directory-admin',
-  imports: [CrudTable, FormsModule],
+  imports: [CrudTable, FormsModule, AppIcon],
   templateUrl: './directory-admin.html',
   styleUrl: '../admin-page.scss',
 })

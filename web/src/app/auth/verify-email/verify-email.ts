@@ -2,12 +2,13 @@ import { Component, OnDestroy, inject, signal } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
+import { AppIcon } from '../../shared/icon/icon';
 
 const RESEND_COOLDOWN_SECONDS = 60;
 
 @Component({
   selector: 'app-verify-email',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, AppIcon],
   templateUrl: './verify-email.html',
   styleUrl: '../login/login.scss',
 })

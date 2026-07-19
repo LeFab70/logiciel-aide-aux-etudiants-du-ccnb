@@ -2,9 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
 import { DirectoryService } from '../../core/directory.service';
 import { DirectoryContact } from '../../core/models';
+import { AppIcon } from '../../shared/icon/icon';
 
 @Component({
   selector: 'app-directory-list',
+  imports: [AppIcon],
   templateUrl: './directory-list.html',
   styleUrl: './directory-list.scss',
 })

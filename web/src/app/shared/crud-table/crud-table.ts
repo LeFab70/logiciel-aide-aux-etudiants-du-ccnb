@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CrudField } from './crud-field';
+import { AppIcon } from '../icon/icon';
 
 export interface CrudColumn {
   key: string;
@@ -9,7 +10,7 @@ export interface CrudColumn {
 
 @Component({
   selector: 'app-crud-table',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AppIcon],
   templateUrl: './crud-table.html',
   styleUrl: './crud-table.scss',
 })

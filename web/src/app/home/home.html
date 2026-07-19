@@ -1,18 +1,50 @@
-<div class="home-page">
-  @if (authService.currentUser(); as user) {
-    <h1>Bienvenue, {{ user.firstName }}</h1>
-    <p>Campus : {{ user.campus.name }}</p>
-    <p>Rôles : {{ user.roles.join(', ') }}</p>
+@if (authService.currentUser(); as user) {
+  <div class="dashboard">
+    <div class="welcome-banner">
+      <div class="welcome-text">
+        <p class="eyebrow">Campus {{ user.campus.name }}</p>
+        <h1>Salut {{ user.firstName }} 👋</h1>
+        <p class="subtitle">Content de te revoir. Voici tes raccourcis du jour.</p>
+      </div>
+      <div class="welcome-illustration">
+        <app-icon name="graduation-cap" [size]="64" [strokeWidth]="1.5" />
+      </div>
+    </div>
 
-    <nav class="home-nav">
-      <a routerLink="/faq">FAQ</a>
-      <a routerLink="/directory">Annuaire de contacts</a>
-      <a routerLink="/campus-plan">Plan du campus</a>
+    <div class="card-grid">
+      <a class="nav-card" routerLink="/faq">
+        <span class="card-icon icon-blue"><app-icon name="circle-question-mark" [size]="22" /></span>
+        <div>
+          <h3>FAQ</h3>
+          <p>Réponses aux questions fréquentes de ton campus</p>
+        </div>
+      </a>
+
+      <a class="nav-card" routerLink="/directory">
+        <span class="card-icon icon-purple"><app-icon name="users" [size]="22" /></span>
+        <div>
+          <h3>Annuaire de contacts</h3>
+          <p>Conseillers, services et personnes-ressources</p>
+        </div>
+      </a>
+
+      <a class="nav-card" routerLink="/campus-plan">
+        <span class="card-icon icon-green"><app-icon name="map" [size]="22" /></span>
+        <div>
+          <h3>Plan du campus</h3>
+          <p>Repère les salles, services et lieux clés</p>
+        </div>
+      </a>
+
       @if (user.roles.includes('ADMIN')) {
-        <a routerLink="/admin">Administration</a>
+        <a class="nav-card admin" routerLink="/admin">
+          <span class="card-icon icon-amber"><app-icon name="shield-check" [size]="22" /></span>
+          <div>
+            <h3>Administration</h3>
+            <p>Gérer la FAQ, l'annuaire et le plan de campus</p>
+          </div>
+        </a>
       }
-    </nav>
-
-    <button (click)="logout()">Se déconnecter</button>
-  }
-</div>
+    </div>
+  </div>
+}

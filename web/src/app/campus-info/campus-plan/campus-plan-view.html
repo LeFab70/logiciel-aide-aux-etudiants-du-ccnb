@@ -1,38 +1,56 @@
-<div class="plan-page">
-  <h1>Plan du campus</h1>
+<div class="page">
+  <header class="page-header">
+    <span class="page-icon"><app-icon name="map" [size]="24" /></span>
+    <div>
+      <h1>Plan du campus</h1>
+      <p>Repère les salles, services et lieux clés de ton campus.</p>
+    </div>
+  </header>
 
   @if (notFound()) {
-    <p>Aucun plan disponible pour ton campus pour l'instant.</p>
+    <div class="empty-state">
+      <app-icon name="map" [size]="32" [strokeWidth]="1.5" />
+      <p>Aucun plan disponible pour ton campus pour l'instant.</p>
+    </div>
   } @else if (plan(); as p) {
-    @if (p.description) {
-      <p>{{ p.description }}</p>
-    }
-    @if (p.imageUrl) {
-      <div class="plan-image-wrapper">
-        <img [src]="p.imageUrl" alt="Plan du campus" />
-        @for (point of p.points; track point.id) {
-          <button
-            type="button"
-            class="plan-point"
-            [style.left.%]="point.xPercent"
-            [style.top.%]="point.yPercent"
-            (click)="selectPoint(point)"
-            [title]="point.label"
-          >
-            📍
-          </button>
-        }
-      </div>
-    } @else {
-      <p>Aucune image de plan n'a encore été ajoutée.</p>
-    }
+    <div class="plan-card">
+      @if (p.description) {
+        <p class="plan-description">{{ p.description }}</p>
+      }
+      @if (p.imageUrl) {
+        <div class="plan-image-wrapper">
+          <img [src]="p.imageUrl" alt="Plan du campus" />
+          @for (point of p.points; track point.id) {
+            <button
+              type="button"
+              class="plan-point"
+              [class.active]="selectedPoint()?.id === point.id"
+              [style.left.%]="point.xPercent"
+              [style.top.%]="point.yPercent"
+              (click)="selectPoint(point)"
+              [title]="point.label"
+            >
+              <app-icon [name]="iconFor(point.category)" [size]="16" />
+            </button>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <app-icon name="map" [size]="32" [strokeWidth]="1.5" />
+          <p>Aucune image de plan n'a encore été ajoutée.</p>
+        </div>
+      }
+    </div>
 
     @if (selectedPoint(); as sp) {
       <div class="point-detail">
-        <h3>{{ sp.label }}</h3>
-        @if (sp.description) {
-          <p>{{ sp.description }}</p>
-        }
+        <span class="point-icon"><app-icon [name]="iconFor(sp.category)" [size]="18" /></span>
+        <div>
+          <h3>{{ sp.label }}</h3>
+          @if (sp.description) {
+            <p>{{ sp.description }}</p>
+          }
+        </div>
       </div>
     }
   }

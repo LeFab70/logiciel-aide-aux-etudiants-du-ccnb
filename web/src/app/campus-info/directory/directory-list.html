@@ -1,25 +1,42 @@
-<div class="directory-page">
-  <h1>Annuaire de contacts</h1>
-  @for (contact of contacts(); track contact.id) {
-    <div class="contact-item">
-      <h3>{{ contact.name }}</h3>
-      @if (contact.role) {
-        <p class="role">{{ contact.role }}</p>
-      }
-      @if (contact.department) {
-        <p>{{ contact.department }}</p>
-      }
-      @if (contact.email) {
-        <p>{{ contact.email }}</p>
-      }
-      @if (contact.phone) {
-        <p>{{ contact.phone }}</p>
-      }
-      @if (contact.officeLocation) {
-        <p>{{ contact.officeLocation }}</p>
-      }
+<div class="page">
+  <header class="page-header">
+    <span class="page-icon"><app-icon name="users" [size]="24" /></span>
+    <div>
+      <h1>Annuaire de contacts</h1>
+      <p>Conseillers, services et personnes-ressources de ton campus.</p>
     </div>
-  } @empty {
-    <p>Aucun contact pour l'instant.</p>
-  }
+  </header>
+
+  <div class="contact-grid">
+    @for (contact of contacts(); track contact.id) {
+      <div class="contact-card">
+        <div class="contact-avatar"><app-icon name="user" [size]="20" /></div>
+        <div class="contact-body">
+          <h3>{{ contact.name }}</h3>
+          @if (contact.role) {
+            <p class="role">{{ contact.role }}</p>
+          }
+          @if (contact.department) {
+            <p class="department">{{ contact.department }}</p>
+          }
+          <div class="contact-meta">
+            @if (contact.email) {
+              <span><app-icon name="mail" [size]="14" /> {{ contact.email }}</span>
+            }
+            @if (contact.phone) {
+              <span><app-icon name="phone" [size]="14" /> {{ contact.phone }}</span>
+            }
+            @if (contact.officeLocation) {
+              <span><app-icon name="map-pin" [size]="14" /> {{ contact.officeLocation }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <app-icon name="users" [size]="32" [strokeWidth]="1.5" />
+        <p>Aucun contact pour l'instant.</p>
+      </div>
+    }
+  </div>
 </div>
