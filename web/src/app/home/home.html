@@ -3,17 +3,17 @@
     <div class="welcome-banner">
       <div class="welcome-text">
         <p class="eyebrow">Campus {{ user.campus.name }}</p>
-        <h1>Salut {{ user.firstName }} 👋</h1>
-        <p class="subtitle">Content de te revoir. Voici tes raccourcis du jour.</p>
+        <h1>Bienvenue, {{ user.firstName }}</h1>
+        <p class="subtitle">Voici tes raccourcis du jour.</p>
       </div>
       <div class="welcome-illustration">
-        <app-icon name="graduation-cap" [size]="64" [strokeWidth]="1.5" />
+        <app-icon name="graduation-cap" [size]="28" [strokeWidth]="1.5" />
       </div>
     </div>
 
     <div class="card-grid">
       <a class="nav-card" routerLink="/faq">
-        <span class="card-icon icon-blue"><app-icon name="circle-question-mark" [size]="22" /></span>
+        <span class="card-icon"><app-icon name="circle-question-mark" [size]="20" /></span>
         <div>
           <h3>FAQ</h3>
           <p>Réponses aux questions fréquentes de ton campus</p>
@@ -21,7 +21,7 @@
       </a>
 
       <a class="nav-card" routerLink="/directory">
-        <span class="card-icon icon-purple"><app-icon name="users" [size]="22" /></span>
+        <span class="card-icon"><app-icon name="users" [size]="20" /></span>
         <div>
           <h3>Annuaire de contacts</h3>
           <p>Conseillers, services et personnes-ressources</p>
@@ -29,7 +29,7 @@
       </a>
 
       <a class="nav-card" routerLink="/campus-plan">
-        <span class="card-icon icon-green"><app-icon name="map" [size]="22" /></span>
+        <span class="card-icon"><app-icon name="map" [size]="20" /></span>
         <div>
           <h3>Plan du campus</h3>
           <p>Repère les salles, services et lieux clés</p>
@@ -38,7 +38,7 @@
 
       @if (user.roles.includes('ADMIN')) {
         <a class="nav-card admin" routerLink="/admin">
-          <span class="card-icon icon-amber"><app-icon name="shield-check" [size]="22" /></span>
+          <span class="card-icon"><app-icon name="shield-check" [size]="20" /></span>
           <div>
             <h3>Administration</h3>
             <p>Gérer la FAQ, l'annuaire et le plan de campus</p>

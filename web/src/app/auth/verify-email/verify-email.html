@@ -1,67 +1,85 @@
 <div class="auth-page">
-  <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
-    <div class="auth-logo"><app-icon name="mail-check" [size]="28" /></div>
-    <h1>Vérifie ton email</h1>
-    <p class="hint">
-      Un code à 6 chiffres a été envoyé par courriel. Entre-le ci-dessous pour activer ton compte.
-    </p>
+  <aside class="auth-side">
+    <div class="auth-side-brand">
+      <span class="brand-mark"><app-icon name="graduation-cap" [size]="18" /></span>
+      App CCNB
+    </div>
+    <div class="auth-side-body">
+      <h2>Encore une étape avant de commencer.</h2>
+      <p>On veut juste confirmer que cette adresse courriel t'appartient bien.</p>
+    </div>
+    <p class="auth-side-foot">© 2026 Collège communautaire du Nouveau-Brunswick</p>
+  </aside>
 
-    <label>
-      Email
-      <div class="input-wrap">
-        <span class="input-icon"><app-icon name="mail" [size]="18" /></span>
-        <input type="email" formControlName="email" autocomplete="email" />
+  <div class="auth-form-panel">
+    <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="mobile-brand">
+        <span class="brand-mark"><app-icon name="graduation-cap" [size]="16" /></span>
+        App CCNB
       </div>
-    </label>
 
-    <label>
-      Code de vérification
-      <div class="input-wrap">
-        <span class="input-icon"><app-icon name="lock" [size]="18" /></span>
-        <input
-          type="text"
-          formControlName="code"
-          inputmode="numeric"
-          maxlength="6"
-          placeholder="123456"
-          autocomplete="one-time-code"
-        />
-      </div>
-    </label>
-    @if (form.controls.code.invalid && form.controls.code.touched) {
-      <p class="field-error"><app-icon name="x" [size]="14" /> Le code doit contenir 6 chiffres.</p>
-    }
+      <h1>Vérifie ton email</h1>
+      <p class="hint">
+        Un code à 6 chiffres a été envoyé par courriel. Entre-le ci-dessous pour activer ton compte.
+      </p>
 
-    @if (errorMessage()) {
-      <p class="form-error"><app-icon name="x" [size]="14" /> {{ errorMessage() }}</p>
-    }
-    @if (infoMessage()) {
-      <p class="form-info"><app-icon name="check" [size]="14" /> {{ infoMessage() }}</p>
-    }
+      <label>
+        Email
+        <div class="input-wrap">
+          <span class="input-icon"><app-icon name="mail" [size]="16" /></span>
+          <input type="email" formControlName="email" autocomplete="email" />
+        </div>
+      </label>
 
-    <button type="submit" [disabled]="submitting()">
-      @if (!submitting()) {
-        <app-icon name="check" [size]="18" />
+      <label>
+        Code de vérification
+        <div class="input-wrap">
+          <span class="input-icon"><app-icon name="lock" [size]="16" /></span>
+          <input
+            type="text"
+            formControlName="code"
+            inputmode="numeric"
+            maxlength="6"
+            placeholder="123456"
+            autocomplete="one-time-code"
+          />
+        </div>
+      </label>
+      @if (form.controls.code.invalid && form.controls.code.touched) {
+        <p class="field-error"><app-icon name="x" [size]="13" /> Le code doit contenir 6 chiffres.</p>
       }
-      {{ submitting() ? 'Vérification...' : 'Vérifier' }}
-    </button>
 
-    <button
-      type="button"
-      class="secondary"
-      [disabled]="resending() || cooldownSeconds() > 0"
-      (click)="resend()"
-    >
-      <app-icon name="rotate-cw" [size]="16" />
-      @if (cooldownSeconds() > 0) {
-        Renvoyer le code ({{ cooldownSeconds() }}s)
-      } @else {
-        {{ resending() ? 'Envoi...' : 'Renvoyer le code' }}
+      @if (errorMessage()) {
+        <p class="form-error"><app-icon name="x" [size]="13" /> {{ errorMessage() }}</p>
       }
-    </button>
+      @if (infoMessage()) {
+        <p class="form-info"><app-icon name="check" [size]="13" /> {{ infoMessage() }}</p>
+      }
 
-    <p class="switch-link">
-      <a routerLink="/auth/register">Recommencer l'inscription</a>
-    </p>
-  </form>
+      <button type="submit" [disabled]="submitting()">
+        @if (!submitting()) {
+          <app-icon name="check" [size]="16" />
+        }
+        {{ submitting() ? 'Vérification...' : 'Vérifier' }}
+      </button>
+
+      <button
+        type="button"
+        class="secondary"
+        [disabled]="resending() || cooldownSeconds() > 0"
+        (click)="resend()"
+      >
+        <app-icon name="rotate-cw" [size]="15" />
+        @if (cooldownSeconds() > 0) {
+          Renvoyer le code ({{ cooldownSeconds() }}s)
+        } @else {
+          {{ resending() ? 'Envoi...' : 'Renvoyer le code' }}
+        }
+      </button>
+
+      <p class="switch-link">
+        <a routerLink="/auth/register">Recommencer l'inscription</a>
+      </p>
+    </form>
+  </div>
 </div>

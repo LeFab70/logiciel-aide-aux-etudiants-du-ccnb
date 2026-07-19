@@ -1,26 +1,27 @@
 :root {
-  --color-primary: #3454d1;
-  --color-primary-dark: #24387a;
-  --color-primary-light: #eef1fd;
-  --color-accent: #f2a93b;
-  --color-accent-dark: #d68e1f;
-  --color-success: #2e7d32;
-  --color-success-bg: #eaf6ec;
-  --color-danger: #d64545;
-  --color-danger-bg: #fdecec;
-  --color-bg: #f4f6fb;
+  --color-ink: #0f172a;
+  --color-primary: #1d4ed8;
+  --color-primary-dark: #1e3a8a;
+  --color-primary-light: #eef2ff;
+  --color-accent: #b45309;
+  --color-accent-light: #fef3e2;
+  --color-success: #15803d;
+  --color-success-bg: #ecfdf3;
+  --color-danger: #b91c1c;
+  --color-danger-bg: #fef2f2;
+  --color-bg: #f8fafc;
   --color-surface: #ffffff;
-  --color-text: #1f2430;
-  --color-text-muted: #667085;
-  --color-border: #e2e5ec;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
 
-  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.08);
-  --shadow-md: 0 6px 20px rgba(16, 24, 40, 0.1);
-  --shadow-lg: 0 16px 40px rgba(16, 24, 40, 0.16);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.1);
 
   --font-sans:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -42,13 +43,15 @@ body {
   color: var(--color-text);
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+  font-size: 15px;
 }
 
 h1,
 h2,
 h3 {
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.01em;
+  color: var(--color-ink);
 }
 
 button {

@@ -1,48 +1,69 @@
 <div class="auth-page">
-  <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
-    <div class="auth-logo"><app-icon name="graduation-cap" [size]="28" /></div>
-    <h1>Connexion</h1>
-    <p class="auth-subtitle">Accède à ton espace étudiant CCNB</p>
+  <aside class="auth-side">
+    <div class="auth-side-brand">
+      <span class="brand-mark"><app-icon name="graduation-cap" [size]="18" /></span>
+      App CCNB
+    </div>
+    <div class="auth-side-body">
+      <h2>L'essentiel de ta vie étudiante, au même endroit.</h2>
+      <p>
+        Horaire, FAQ, annuaire du campus et tutorat : accède à tout ce dont tu as besoin pour
+        réussir ta première année au CCNB.
+      </p>
+    </div>
+    <p class="auth-side-foot">© 2026 Collège communautaire du Nouveau-Brunswick</p>
+  </aside>
 
-    <label>
-      Email
-      <div class="input-wrap">
-        <span class="input-icon"><app-icon name="mail" [size]="18" /></span>
-        <input type="email" formControlName="email" autocomplete="email" />
+  <div class="auth-form-panel">
+    <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="mobile-brand">
+        <span class="brand-mark"><app-icon name="graduation-cap" [size]="16" /></span>
+        App CCNB
       </div>
-    </label>
-    @if (form.controls.email.invalid && form.controls.email.touched) {
-      <p class="field-error"><app-icon name="x" [size]="14" /> Email invalide.</p>
-    }
 
-    <label>
-      Mot de passe
-      <div class="input-wrap">
-        <span class="input-icon"><app-icon name="lock" [size]="18" /></span>
-        <input
-          [type]="showPassword() ? 'text' : 'password'"
-          formControlName="password"
-          autocomplete="current-password"
-        />
-        <button type="button" class="eye-toggle" (click)="togglePasswordVisibility()">
-          <app-icon [name]="showPassword() ? 'eye-off' : 'eye'" [size]="17" />
-        </button>
-      </div>
-    </label>
+      <h1>Connexion</h1>
+      <p class="auth-subtitle">Accède à ton espace étudiant.</p>
 
-    @if (errorMessage()) {
-      <p class="form-error"><app-icon name="x" [size]="14" /> {{ errorMessage() }}</p>
-    }
-
-    <button type="submit" [disabled]="submitting()">
-      @if (!submitting()) {
-        <app-icon name="log-in" [size]="18" />
+      <label>
+        Email
+        <div class="input-wrap">
+          <span class="input-icon"><app-icon name="mail" [size]="16" /></span>
+          <input type="email" formControlName="email" autocomplete="email" />
+        </div>
+      </label>
+      @if (form.controls.email.invalid && form.controls.email.touched) {
+        <p class="field-error"><app-icon name="x" [size]="13" /> Email invalide.</p>
       }
-      {{ submitting() ? 'Connexion...' : 'Se connecter' }}
-    </button>
 
-    <p class="switch-link">
-      Pas encore de compte ? <a routerLink="/auth/register">S'inscrire</a>
-    </p>
-  </form>
+      <label>
+        Mot de passe
+        <div class="input-wrap">
+          <span class="input-icon"><app-icon name="lock" [size]="16" /></span>
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="password"
+            autocomplete="current-password"
+          />
+          <button type="button" class="eye-toggle" (click)="togglePasswordVisibility()">
+            <app-icon [name]="showPassword() ? 'eye-off' : 'eye'" [size]="16" />
+          </button>
+        </div>
+      </label>
+
+      @if (errorMessage()) {
+        <p class="form-error"><app-icon name="x" [size]="13" /> {{ errorMessage() }}</p>
+      }
+
+      <button type="submit" [disabled]="submitting()">
+        @if (!submitting()) {
+          <app-icon name="log-in" [size]="16" />
+        }
+        {{ submitting() ? 'Connexion...' : 'Se connecter' }}
+      </button>
+
+      <p class="switch-link">
+        Pas encore de compte ? <a routerLink="/auth/register">S'inscrire</a>
+      </p>
+    </form>
+  </div>
 </div>
