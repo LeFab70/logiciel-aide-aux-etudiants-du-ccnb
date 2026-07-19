@@ -42,18 +42,24 @@
             maxlength="6"
             placeholder="123456"
             autocomplete="one-time-code"
+            [attr.aria-invalid]="form.controls.code.invalid && form.controls.code.touched ? true : null"
+            [attr.aria-describedby]="
+              form.controls.code.invalid && form.controls.code.touched ? 'code-error' : null
+            "
           />
         </div>
       </label>
-      @if (form.controls.code.invalid && form.controls.code.touched) {
-        <p class="field-error"><app-icon name="x" [size]="13" /> Le code doit contenir 6 chiffres.</p>
-      }
+      <div aria-live="polite">
+        @if (form.controls.code.invalid && form.controls.code.touched) {
+          <p id="code-error" class="field-error"><app-icon name="x" [size]="13" /> Le code doit contenir 6 chiffres.</p>
+        }
+      </div>
 
       @if (errorMessage()) {
-        <p class="form-error"><app-icon name="x" [size]="13" /> {{ errorMessage() }}</p>
+        <p class="form-error" role="alert"><app-icon name="x" [size]="13" /> {{ errorMessage() }}</p>
       }
       @if (infoMessage()) {
-        <p class="form-info"><app-icon name="check" [size]="13" /> {{ infoMessage() }}</p>
+        <p class="form-info" role="status"><app-icon name="check" [size]="13" /> {{ infoMessage() }}</p>
       }
 
       <button type="submit" [disabled]="submitting()">

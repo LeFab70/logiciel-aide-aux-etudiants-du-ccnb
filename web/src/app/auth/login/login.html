@@ -28,12 +28,22 @@
         Email
         <div class="input-wrap">
           <span class="input-icon"><app-icon name="mail" [size]="16" /></span>
-          <input type="email" formControlName="email" autocomplete="email" />
+          <input
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            [attr.aria-invalid]="form.controls.email.invalid && form.controls.email.touched ? true : null"
+            [attr.aria-describedby]="
+              form.controls.email.invalid && form.controls.email.touched ? 'email-error' : null
+            "
+          />
         </div>
       </label>
-      @if (form.controls.email.invalid && form.controls.email.touched) {
-        <p class="field-error"><app-icon name="x" [size]="13" /> Email invalide.</p>
-      }
+      <div aria-live="polite">
+        @if (form.controls.email.invalid && form.controls.email.touched) {
+          <p id="email-error" class="field-error"><app-icon name="x" [size]="13" /> Email invalide.</p>
+        }
+      </div>
 
       <label>
         Mot de passe
@@ -51,7 +61,7 @@
       </label>
 
       @if (errorMessage()) {
-        <p class="form-error"><app-icon name="x" [size]="13" /> {{ errorMessage() }}</p>
+        <p class="form-error" role="alert"><app-icon name="x" [size]="13" /> {{ errorMessage() }}</p>
       }
 
       <button type="submit" [disabled]="submitting()">

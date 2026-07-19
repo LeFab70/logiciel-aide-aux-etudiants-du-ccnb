@@ -63,7 +63,7 @@
         </div>
       </label>
 
-      <ul class="password-checklist">
+      <ul class="password-checklist" role="status" aria-live="polite" aria-atomic="true">
         <li [class.ok]="passwordChecks().hasMinLength">
           <span class="check-icon"><app-icon [name]="passwordChecks().hasMinLength ? 'check' : 'x'" [size]="13" /></span>
           8 caractères minimum
@@ -93,11 +93,13 @@
           />
         </div>
       </label>
-      @if (passwordsMatch()) {
-        <p class="field-ok"><app-icon name="check" [size]="13" /> Les mots de passe correspondent</p>
-      } @else if (showMismatch()) {
-        <p class="field-error"><app-icon name="x" [size]="13" /> Les mots de passe ne correspondent pas</p>
-      }
+      <div aria-live="polite">
+        @if (passwordsMatch()) {
+          <p class="field-ok"><app-icon name="check" [size]="13" /> Les mots de passe correspondent</p>
+        } @else if (showMismatch()) {
+          <p class="field-error"><app-icon name="x" [size]="13" /> Les mots de passe ne correspondent pas</p>
+        }
+      </div>
 
       <label>
         Campus
@@ -113,7 +115,7 @@
       </label>
 
       @if (errorMessage()) {
-        <p class="form-error"><app-icon name="x" [size]="13" /> {{ errorMessage() }}</p>
+        <p class="form-error" role="alert"><app-icon name="x" [size]="13" /> {{ errorMessage() }}</p>
       }
 
       <button type="submit" [disabled]="submitting()">
