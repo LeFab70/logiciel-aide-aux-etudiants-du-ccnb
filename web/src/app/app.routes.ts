@@ -39,6 +39,10 @@ export const routes: Routes = [
           import('./campus-info/campus-plan/campus-plan-view').then((m) => m.CampusPlanView),
       },
       {
+        path: 'profile',
+        loadComponent: () => import('./profile/profile').then((m) => m.Profile),
+      },
+      {
         path: 'admin',
         canActivate: [roleGuard('ADMIN')],
         children: [

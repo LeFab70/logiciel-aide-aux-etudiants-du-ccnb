@@ -47,6 +47,17 @@ export interface ResendCodeRequest {
   email: string;
 }
 
+export interface UpdateProfileRequest {
+  firstName: string;
+  lastName: string;
+  campusId: number;
+}
+
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export interface Faq {
   id: number;
   campusId: number | null;

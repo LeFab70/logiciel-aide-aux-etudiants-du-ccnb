@@ -1,5 +1,6 @@
 :root {
   --color-ink: #0f172a;
+  --color-heading: var(--color-ink);
   --color-primary: #1d4ed8;
   --color-primary-dark: #1e3a8a;
   --color-primary-light: #eef2ff;
@@ -27,6 +28,43 @@
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Dark theme — default follows system preference, but the in-app toggle (ThemeService)
+   always stamps data-theme explicitly, which must win in both directions (see the two
+   :root[data-theme] blocks below). --color-ink is deliberately NOT flipped: it's used for
+   "always dark" brand surfaces (auth side panel, hero banner, brand mark) that keep their
+   own identity regardless of app theme. */
+@mixin dark-theme-vars {
+  --color-heading: #f8fafc;
+  --color-primary: #3b82f6;
+  --color-primary-dark: #60a5fa;
+  --color-primary-light: rgba(59, 130, 246, 0.16);
+  --color-accent: #f59e0b;
+  --color-accent-light: rgba(245, 158, 11, 0.16);
+  --color-success: #4ade80;
+  --color-success-bg: rgba(74, 222, 128, 0.14);
+  --color-danger: #f87171;
+  --color-danger-bg: rgba(248, 113, 113, 0.14);
+  --color-bg: #0f1420;
+  --color-surface: #1a2133;
+  --color-text: #e5e7eb;
+  --color-text-muted: #94a3b8;
+  --color-border: #2a3450;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include dark-theme-vars;
+  }
+}
+
+:root[data-theme='dark'] {
+  @include dark-theme-vars;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -44,6 +82,9 @@ body {
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 h1,
@@ -51,7 +92,7 @@ h2,
 h3 {
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--color-ink);
+  color: var(--color-heading);
 }
 
 button {

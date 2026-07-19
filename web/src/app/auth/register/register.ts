@@ -1,26 +1,12 @@
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Component, Signal, computed, inject, signal } from '@angular/core';
-import {
-  AbstractControl,
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 import { CampusService } from '../../core/campus.service';
 import { Campus } from '../../core/models';
 import { AppIcon } from '../../shared/icon/icon';
-
-/** Mirrors the server-side pattern in RegisterRequest.password — keep both in sync. */
-const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
-function passwordsMatchValidator(group: AbstractControl): ValidationErrors | null {
-  const password = group.get('password')?.value;
-  const confirmPassword = group.get('confirmPassword')?.value;
-  return password === confirmPassword ? null : { passwordMismatch: true };
-}
+import { PASSWORD_PATTERN, computePasswordChecks, passwordsMatchValidator } from '../../shared/password-policy';
 
 @Component({
   selector: 'app-register',
@@ -48,21 +34,13 @@ export class Register {
       confirmPassword: this.fb.control('', [Validators.required]),
       campusId: this.fb.control<number | null>(null, [Validators.required]),
     },
-    { validators: passwordsMatchValidator },
+    { validators: passwordsMatchValidator('password', 'confirmPassword') },
   );
 
   private readonly passwordValue: Signal<string>;
   private readonly confirmPasswordValue: Signal<string>;
 
-  readonly passwordChecks = computed(() => {
-    const value = this.passwordValue();
-    return {
-      hasMinLength: value.length >= 8,
-      hasUpper: /[A-Z]/.test(value),
-      hasLower: /[a-z]/.test(value),
-      hasDigit: /\d/.test(value),
-    };
-  });
+  readonly passwordChecks = computed(() => computePasswordChecks(this.passwordValue()));
 
   readonly passwordsMatch = computed(() => {
     const confirm = this.confirmPasswordValue();

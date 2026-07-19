@@ -1,0 +1,123 @@
+<div class="page">
+  <header class="page-header">
+    <span class="page-icon"><app-icon name="user" [size]="24" /></span>
+    <div>
+      <h1>Mon profil</h1>
+      <p>Gère tes informations personnelles et ton mot de passe.</p>
+    </div>
+  </header>
+
+  <section class="settings-card">
+    <h2>Informations personnelles</h2>
+    <form [formGroup]="profileForm" (ngSubmit)="submitProfile()">
+      <div class="field-row">
+        <label>
+          Prénom
+          <input type="text" formControlName="firstName" />
+        </label>
+        <label>
+          Nom
+          <input type="text" formControlName="lastName" />
+        </label>
+      </div>
+
+      <label>
+        Campus
+        <select formControlName="campusId">
+          @for (campus of campuses(); track campus.id) {
+            <option [ngValue]="campus.id">{{ campus.name }}</option>
+          }
+        </select>
+      </label>
+
+      @if (profileError()) {
+        <p class="form-error"><app-icon name="x" [size]="13" /> {{ profileError() }}</p>
+      }
+      @if (profileSuccess()) {
+        <p class="form-info"><app-icon name="check" [size]="13" /> {{ profileSuccess() }}</p>
+      }
+
+      <button type="submit" [disabled]="profileSubmitting()">
+        <app-icon name="check" [size]="15" />
+        {{ profileSubmitting() ? 'Enregistrement...' : 'Enregistrer' }}
+      </button>
+    </form>
+  </section>
+
+  <section class="settings-card">
+    <h2>Changer le mot de passe</h2>
+    <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
+      <label>
+        Mot de passe actuel
+        <div class="input-wrap">
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="currentPassword"
+            autocomplete="current-password"
+          />
+          <button type="button" class="eye-toggle" (click)="togglePasswordVisibility()">
+            <app-icon [name]="showPassword() ? 'eye-off' : 'eye'" [size]="16" />
+          </button>
+        </div>
+      </label>
+
+      <label>
+        Nouveau mot de passe
+        <div class="input-wrap">
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="newPassword"
+            autocomplete="new-password"
+          />
+        </div>
+      </label>
+
+      <ul class="password-checklist">
+        <li [class.ok]="passwordChecks().hasMinLength">
+          <app-icon [name]="passwordChecks().hasMinLength ? 'check' : 'x'" [size]="13" />
+          8 caractères minimum
+        </li>
+        <li [class.ok]="passwordChecks().hasUpper">
+          <app-icon [name]="passwordChecks().hasUpper ? 'check' : 'x'" [size]="13" />
+          une majuscule
+        </li>
+        <li [class.ok]="passwordChecks().hasLower">
+          <app-icon [name]="passwordChecks().hasLower ? 'check' : 'x'" [size]="13" />
+          une minuscule
+        </li>
+        <li [class.ok]="passwordChecks().hasDigit">
+          <app-icon [name]="passwordChecks().hasDigit ? 'check' : 'x'" [size]="13" />
+          un chiffre
+        </li>
+      </ul>
+
+      <label>
+        Confirmer le nouveau mot de passe
+        <div class="input-wrap">
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="confirmNewPassword"
+            autocomplete="new-password"
+          />
+        </div>
+      </label>
+      @if (passwordsMatch()) {
+        <p class="field-ok"><app-icon name="check" [size]="13" /> Les mots de passe correspondent</p>
+      } @else if (showMismatch()) {
+        <p class="field-error"><app-icon name="x" [size]="13" /> Les mots de passe ne correspondent pas</p>
+      }
+
+      @if (passwordError()) {
+        <p class="form-error"><app-icon name="x" [size]="13" /> {{ passwordError() }}</p>
+      }
+      @if (passwordSuccess()) {
+        <p class="form-info"><app-icon name="check" [size]="13" /> {{ passwordSuccess() }}</p>
+      }
+
+      <button type="submit" [disabled]="passwordSubmitting()">
+        <app-icon name="lock" [size]="15" />
+        {{ passwordSubmitting() ? 'Mise à jour...' : 'Mettre à jour le mot de passe' }}
+      </button>
+    </form>
+  </section>
+</div>

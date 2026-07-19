@@ -4,10 +4,12 @@ import { Observable, switchMap, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {
   AuthResponse,
+  ChangePasswordRequest,
   LoginRequest,
   PendingRegistrationResponse,
   RegisterRequest,
   ResendCodeRequest,
+  UpdateProfileRequest,
   User,
   VerifyEmailRequest,
 } from './models';
@@ -68,6 +70,16 @@ export class AuthService {
     return this.http
       .get<User>(`${environment.apiUrl}/users/me`)
       .pipe(tap((user) => this.currentUserSignal.set(user)));
+  }
+
+  updateProfile(request: UpdateProfileRequest): Observable<User> {
+    return this.http
+      .patch<User>(`${environment.apiUrl}/users/me`, request)
+      .pipe(tap((user) => this.currentUserSignal.set(user)));
+  }
+
+  changePassword(request: ChangePasswordRequest): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/users/me/change-password`, request);
   }
 
   logout(): void {
